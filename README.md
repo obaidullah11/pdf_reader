@@ -29,8 +29,8 @@ npm start
 
 ## Usage
 
-1. Make sure your PDF file `UIA, February 2026.pdf` is in the `public` folder
-2. Start the app with `npm start`
+1. Start the app with `npm start`
+2. Click "Choose PDF File" to upload your PDF book
 3. Use the controls at the bottom to navigate:
    - **◀ ▶** - Previous/Next page
    - **− +** - Zoom out/in

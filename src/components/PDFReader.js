@@ -8,7 +8,7 @@ import MagnifyingLens from './MagnifyingLens';
 // Set up the worker
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-const PDFReader = ({ pdfFile }) => {
+const PDFReader = ({ pdfFile, onClose }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [scale, setScale] = useState(1.0);
@@ -124,6 +124,9 @@ const PDFReader = ({ pdfFile }) => {
     <div className="pdf-reader">
       {/* Header */}
       <div className="pdf-header">
+        <button className="close-button" onClick={onClose} title="Close">
+          ✕
+        </button>
         <div className="page-info">
           Page {pageNumber} of {numPages}
         </div>
@@ -146,33 +149,24 @@ const PDFReader = ({ pdfFile }) => {
       >
         <div className="pdf-wrapper">
           <Document
-            file={{
-              url: pdfFile,
-              httpHeaders: {
-                'Accept': 'application/pdf',
-              },
-            }}
+            file={pdfFile}
             onLoadSuccess={onDocumentLoadSuccess}
             onLoadError={onDocumentLoadError}
             options={{
               cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
               cMapPacked: true,
               standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
-              isEvalSupported: false,
-              useSystemFonts: true,
             }}
             loading={
               <div className="loading">
                 <div className="spinner"></div>
                 <p>Loading PDF...</p>
-                <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>File: {pdfFile}</p>
               </div>
             }
             error={
               <div className="error">
                 <p>Failed to load PDF.</p>
-                <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>File path: {pdfFile}</p>
-                <p style={{ fontSize: '0.9rem' }}>Check the browser console for details.</p>
+                <p style={{ fontSize: '0.9rem' }}>Please try uploading the file again.</p>
               </div>
             }
           >
