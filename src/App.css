@@ -1,0 +1,79 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.upload-box {
+  text-align: center;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  max-width: 500px;
+  width: 90%;
+}
+
+.upload-box h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.upload-box p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.upload-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #ffffff;
+  color: #667eea;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.upload-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: #f0f0f0;
+}
+
+.upload-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .upload-box {
+    padding: 2rem;
+  }
+
+  .upload-box h1 {
+    font-size: 2rem;
+  }
+
+  .upload-box p {
+    font-size: 1rem;
+  }
+
+  .upload-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
