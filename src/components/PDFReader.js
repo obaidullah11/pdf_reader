@@ -6,7 +6,7 @@ import './PDFReader.css';
 import MagnifyingLens from './MagnifyingLens';
 
 // Set up the worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 const PDFReader = ({ pdfFile }) => {
   const [numPages, setNumPages] = useState(null);
@@ -146,13 +146,20 @@ const PDFReader = ({ pdfFile }) => {
       >
         <div className="pdf-wrapper">
           <Document
-            file={pdfFile}
+            file={{
+              url: pdfFile,
+              httpHeaders: {
+                'Accept': 'application/pdf',
+              },
+            }}
             onLoadSuccess={onDocumentLoadSuccess}
             onLoadError={onDocumentLoadError}
             options={{
-              cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
+              cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
               cMapPacked: true,
-              standardFontDataUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/standard_fonts/',
+              standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
+              isEvalSupported: false,
+              useSystemFonts: true,
             }}
             loading={
               <div className="loading">
