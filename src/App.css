@@ -59,6 +59,32 @@
   transform: translateY(0);
 }
 
+.loading-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-upload .spinner {
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-upload p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+
 @media (max-width: 768px) {
   .upload-box {
     padding: 2rem;
