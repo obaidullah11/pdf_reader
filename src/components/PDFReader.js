@@ -20,6 +20,11 @@ const PDFReader = ({ pdfFile }) => {
   // Handle PDF load
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
+    console.log('PDF loaded successfully with', numPages, 'pages');
+  };
+
+  const onDocumentLoadError = (error) => {
+    console.error('Error loading PDF:', error);
   };
 
   // Page navigation
@@ -143,15 +148,24 @@ const PDFReader = ({ pdfFile }) => {
           <Document
             file={pdfFile}
             onLoadSuccess={onDocumentLoadSuccess}
+            onLoadError={onDocumentLoadError}
+            options={{
+              cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
+              cMapPacked: true,
+              standardFontDataUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/standard_fonts/',
+            }}
             loading={
               <div className="loading">
                 <div className="spinner"></div>
                 <p>Loading PDF...</p>
+                <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>File: {pdfFile}</p>
               </div>
             }
             error={
               <div className="error">
-                <p>Failed to load PDF. Please try again.</p>
+                <p>Failed to load PDF.</p>
+                <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>File path: {pdfFile}</p>
+                <p style={{ fontSize: '0.9rem' }}>Check the browser console for details.</p>
               </div>
             }
           >

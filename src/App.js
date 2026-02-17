@@ -4,7 +4,8 @@ import PDFReader from './components/PDFReader';
 
 function App() {
   // Load PDF from public folder
-  const pdfFile = '/UIA, February 2026.pdf';
+  // Using simplified filename without spaces for better compatibility
+  const pdfFile = `${process.env.PUBLIC_URL}/book.pdf`;
 
   return (
     <div className="App">
